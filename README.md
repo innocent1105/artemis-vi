@@ -13,10 +13,9 @@
 spaceflight.`</strong>`{=html}`<br>`{=html} A multimodal
 health-monitoring concept combining computer vision, sleep and recovery
 tracking, self-reported wellbeing, and AI-assisted clinical review.
-```{=html}
+
 </p>
-```
-```{=html}
+
 <p align="center">
 ```
 `<a href="https://developers.google.com/mediapipe/solutions/vision/pose_landmarker">`{=html}
@@ -27,7 +26,7 @@ tracking, self-reported wellbeing, and AI-assisted clinical review.
 `<img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1" alt="PostgreSQL">`{=html}
 `</a>`{=html}
 `<img src="https://img.shields.io/badge/Project-Concept%20and%20Prototype-orange" alt="Project status">`{=html}
-```{=html}
+
 </p>
 ```
 
