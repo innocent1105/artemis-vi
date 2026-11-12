@@ -18,13 +18,9 @@ tracking, self-reported wellbeing, and AI-assisted clinical review.
 
 <p align="center">
 
-<a href="https://developers.google.com/mediapipe/solutions/vision/pose_landmarker">
 <img src="https://img.shields.io/badge/Computer%20Vision-MediaPipe-blue" alt="MediaPipe">
-</a><a href="https://reactnative.dev/">
 <img src="https://img.shields.io/badge/Mobile-React%20Native-61DAFB" alt="React Native">
-</a><a href="https://www.postgresql.org/">
 <img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1" alt="PostgreSQL">
-</a>
 <img src="https://img.shields.io/badge/Project-Concept%20and%20Prototype-orange" alt="Project status">
 
 </p>
