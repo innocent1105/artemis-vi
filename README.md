@@ -2,16 +2,15 @@
 
 ### AI-Powered Astronaut Health Monitoring and Early Warning System
 
-```{=html}
+{=html}
 <p align="center">
-```
-`<img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1400&q=85" alt="Earth viewed from space" width="100%">`{=html}
-```{=html}
+
+<img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1400&q=85" alt="Earth viewed from space" width="100%">`{=html}
+{=html}
 </p>
-```
-```{=html}
+{=html}
 <p align="center">
-```
+
 `<strong>`{=html}Continuous health insights for safer human
 spaceflight.`</strong>`{=html}`<br>`{=html} A multimodal
 health-monitoring concept combining computer vision, sleep and recovery
