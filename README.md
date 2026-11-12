@@ -6,30 +6,29 @@
 
 <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1400&q=85" alt="Earth viewed from space" width="100%">`{=html}
 
-```{=html}
 </p>
 <p align="center">
 
-`<strong>`{=html}Continuous health insights for safer human
-spaceflight.`</strong>`{=html}`<br>`{=html} A multimodal
+<strong>{=html}Continuous health insights for safer human
+spaceflight.</strong><br>A multimodal
 health-monitoring concept combining computer vision, sleep and recovery
 tracking, self-reported wellbeing, and AI-assisted clinical review.
 
 </p>
 
 <p align="center">
-```
-`<a href="https://developers.google.com/mediapipe/solutions/vision/pose_landmarker">`{=html}
-`<img src="https://img.shields.io/badge/Computer%20Vision-MediaPipe-blue" alt="MediaPipe">`{=html}
-`</a>`{=html} `<a href="https://reactnative.dev/">`{=html}
-`<img src="https://img.shields.io/badge/Mobile-React%20Native-61DAFB" alt="React Native">`{=html}
-`</a>`{=html} `<a href="https://www.postgresql.org/">`{=html}
-`<img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1" alt="PostgreSQL">`{=html}
-`</a>`{=html}
-`<img src="https://img.shields.io/badge/Project-Concept%20and%20Prototype-orange" alt="Project status">`{=html}
+
+<a href="https://developers.google.com/mediapipe/solutions/vision/pose_landmarker">
+<img src="https://img.shields.io/badge/Computer%20Vision-MediaPipe-blue" alt="MediaPipe">
+</a><a href="https://reactnative.dev/">
+<img src="https://img.shields.io/badge/Mobile-React%20Native-61DAFB" alt="React Native">
+</a><a href="https://www.postgresql.org/">
+<img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1" alt="PostgreSQL">
+</a>
+<img src="https://img.shields.io/badge/Project-Concept%20and%20Prototype-orange" alt="Project status">
 
 </p>
-```
+
 
 ------------------------------------------------------------------------
 
