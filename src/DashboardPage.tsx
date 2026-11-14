@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Activity, ShieldCheck, Moon, Brain, } from "lucide-react";
 import { HealthTimelinePage } from "./HealthTimelinePage.tsx";
+import { AiSymptomAssistant } from './components/wellbeing/AiSymptomAssistant';
 
 export function DashboardPage() {
   const [tab, setTab] = useState<"overview" | "timeline">("timeline");
@@ -59,7 +60,12 @@ export function DashboardPage() {
               <p className="text-sm text-slate-400">Stress and AI assistant modules active.</p>
             </div>
           </div>
+          
         )}
+        <div className="mt-6">
+  <AiSymptomAssistant />
+</div>
+
       </main>
     </div>
   );

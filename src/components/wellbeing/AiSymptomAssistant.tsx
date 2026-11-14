@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './AiSymptomAssistant.css';
 
 interface Message {
   sender: 'crew' | 'assistant';
@@ -44,11 +43,11 @@ export const AiSymptomAssistant: React.FC = () => {
     setTimeout(() => {
       let responseText = '';
       if (queryText.toLowerCase().includes('sleep') || queryText.toLowerCase().includes('circadian')) {
-        responseText = 'Autonomous Assessment: Circadian desynchrony and sleep restriction detected (<6h baseline). Recommendation: Apply Layer 2 countermeasures[cite: 14]—initiate scheduled blue-shifted light therapy protocols, review workload balance, and log actigraphy metrics for ARCHeR comparison[cite: 20].';
+        responseText = 'Autonomous Assessment: Circadian desynchrony and sleep restriction detected (<6h baseline). Recommendation: Apply Layer 2 countermeasures—initiate scheduled blue-shifted light therapy protocols, review workload balance, and log actigraphy metrics for comparison.';
       } else if (queryText.toLowerCase().includes('stress') || queryText.toLowerCase().includes('behavioral')) {
-        responseText = 'Autonomous Assessment: Behavioral health indicator flagged due to isolation and confinement parameters[cite: 19]. Recommendation: Utilize private journaling modules, schedule autonomous audio-conferencing, and review team resilience protocols validated in HERA/CHAPEA analogs[cite: 26].';
+        responseText = 'Autonomous Assessment: Behavioral health indicator flagged due to isolation and confinement parameters. Recommendation: Utilize private journaling modules, schedule autonomous audio-conferencing, and review team resilience protocols validated in HERA/CHAPEA analogs.';
       } else if (queryText.toLowerCase().includes('dizziness') || queryText.toLowerCase().includes('sensorimotor')) {
-        responseText = 'Autonomous Assessment: Gravity-transition sensorimotor disturbance[cite: 19]. Recommendation: Monitor spatial orientation, restrict rapid head movements, log fluid redistribution indicators, and prepare stabilization logs for ground synchronization.';
+        responseText = 'Autonomous Assessment: Gravity-transition sensorimotor disturbance. Recommendation: Monitor spatial orientation, restrict rapid head movements, log fluid redistribution indicators, and prepare stabilization logs for ground synchronization.';
       } else {
         responseText = 'Autonomous Diagnostic: Query logged under Earth-independent protocol. Telemetry indicates nominal vital-sign baseline. Continue monitoring via individual wellbeing trackers and apply local countermeasure adjustments as needed.';
       }
@@ -65,45 +64,65 @@ export const AiSymptomAssistant: React.FC = () => {
   };
 
   return (
-    <div className="ai-symptom-assistant">
-      <div className="assistant-header">
-        <h3>ASTRA HEALTH AI Symptom & Wellbeing Assistant</h3>
-        <span className="badge-earth-independent">Earth-Independent Mode</span>
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 text-slate-100 shadow-xl max-w-4xl mx-auto">
+      <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+          ASTRA HEALTH AI Symptom & Wellbeing Assistant
+        </h3>
+        <span className="px-2.5 py-1 bg-indigo-950 text-indigo-300 border border-indigo-500/30 text-xs font-medium rounded-full">
+          Earth-Independent Mode
+        </span>
       </div>
 
-      <div className="quick-prompts-container">
-        <span className="prompts-label">Quick Diagnostic Triggers:</span>
-        <div className="prompts-grid">
+      <div className="mb-4">
+        <span className="text-xs text-slate-400 block mb-2 font-medium">Quick Diagnostic Triggers:</span>
+        <div className="flex flex-wrap gap-2">
           {quickPrompts.map((p, idx) => (
-            <button key={idx} onClick={() => handleSend(p.query, p.category)} className="prompt-chip">
+            <button 
+              key={idx} 
+              onClick={() => handleSend(p.query, p.category)} 
+              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs rounded-lg border border-indigo-500/30 transition-all cursor-pointer font-medium"
+            >
               {p.label}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="chat-window">
+      <div className="bg-slate-950/60 rounded-xl p-4 h-80 overflow-y-auto mb-4 border border-slate-800/80 flex flex-col gap-3">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`chat-message ${msg.sender}`}>
-            <div className="message-meta">
-              <span className="msg-sender">{msg.sender === 'crew' ? 'Crew Member' : 'AI Assistant'}</span>
-              {msg.category && <span className="msg-category">[{msg.category}]</span>}
-              <span className="msg-time">{msg.timestamp}</span>
+          <div key={idx} className={`flex flex-col ${msg.sender === 'crew' ? 'items-end' : 'items-start'}`}>
+            <div className="flex items-center gap-2 mb-1 text-xs text-slate-400">
+              <span className="font-semibold text-slate-300">{msg.sender === 'crew' ? 'Crew Member' : 'AI Assistant'}</span>
+              {msg.category && <span className="text-indigo-400">[{msg.category}]</span>}
+              <span>{msg.timestamp}</span>
             </div>
-            <div className="message-bubble">{msg.text}</div>
+            <div className={`p-3 rounded-xl text-sm max-w-[85%] leading-relaxed ${
+              msg.sender === 'crew' 
+                ? 'bg-indigo-600 text-white rounded-tr-none' 
+                : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-tl-none'
+            }`}>
+              {msg.text}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="chat-input-area">
+      <div className="flex gap-2">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Describe symptoms or query telemetry thresholds..."
+          className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
         />
-        <button onClick={() => handleSend()} className="send-btn">Transmit</button>
+        <button 
+          onClick={() => handleSend()} 
+          className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium rounded-lg transition-colors shadow-lg shadow-indigo-600/20 cursor-pointer"
+        >
+          Transmit
+        </button>
       </div>
     </div>
   );
