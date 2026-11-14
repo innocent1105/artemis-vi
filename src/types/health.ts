@@ -1,51 +1,26 @@
-export type EventSource = "movement" | "sleep" | "wellbeing" | "symptom" | "assistant";
+export interface HealthScore {
+  value: number;
+  max: number;
+  label: string;
+  isMedical: boolean;
+}
 
-export interface BaseRecord {
+export interface AssessmentFinding {
   id: string;
-  astronautId: string;
-  timestamp: string;
-  source: EventSource;
-  actorId: string;
-  reason?: string;
+  text: string;
+  severity: "info" | "attention" | "critical";
 }
 
-export interface SleepSession extends BaseRecord {
-  source: "sleep";
-  startTime: string;
-  endTime: string;
-  durationHours: number;
-}
-
-export interface WellbeingCheckin extends BaseRecord {
-  source: "wellbeing";
-  stress: number;
-  mood: number;
-  fatigue: number;
-}
-
-export interface MovementSession extends BaseRecord {
-  source: "movement";
-  metrics: Record<string, number>;
-}
-
-export interface SymptomReport extends BaseRecord {
-  source: "symptom";
-  description: string;
-  severity: "low" | "medium" | "high";
-}
-
-export type HealthRecord = SleepSession | WellbeingCheckin | MovementSession | SymptomReport;
-
-export interface Alert {
+export interface AssessmentRecommendation {
   id: string;
-  astronautId: string;
-  ruleId: string;
-  severity: "info" | "review" | "urgent";
-  title: string;
-  explanation: string;
-  contributingRecordIds: string[];
-  createdAt: string;
-  status: "open" | "acknowledged" | "closed";
+  text: string;
+  priority: "low" | "medium" | "high";
+}
+
+export interface LandmarkVisibility {
+  landmark: string;
+  visible: boolean;
+  visibility: number;
 }
 
 export interface DetectionStatus {

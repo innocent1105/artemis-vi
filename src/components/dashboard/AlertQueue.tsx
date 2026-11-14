@@ -53,7 +53,7 @@ export function AlertQueue({ alerts, onAlertSelect }: AlertQueueProps) {
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-xs font-semibold text-slate-200">{alert.title}</p>
                   <span className={`rounded px-1.5 py-0.5 text-[9px] uppercase tracking-wider ${config.bg} ${config.color}`}>
-                    {alert.status.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
+                    {alert.status.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                   </span>
                   {alert.isSampleData && (
                     <span className="rounded px-1.5 py-0.5 text-[9px] uppercase tracking-wider border border-white/10 text-slate-500">Sample</span>
