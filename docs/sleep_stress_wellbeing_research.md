@@ -1,65 +1,67 @@
-# ASTRONAUT STRESS, SLEEP DISRUPTION & NASA COUNTERMEASURES
-**Spaceflight Health Detection System (Wellbeing, Sleep & AI Diagnostic Module)**
+# ASTRA HEALTH: Sleep, Stress, Behavioral Health & AI Decision Support
 
----
+**Module Focus:** Sleep Logger, Wellbeing & Stress Reporting, and AI Symptom Assistant  
+**Alignment Reference:** NASA & Canadian Space Agency (CSA) Human Spaceflight Health Data (13–14 November 2026)
 
-## 1. Core Causes of Astronaut Stress & Sleep Disruption
+## 1. Executive Summary & Mission Alignment
 
-In spaceflight (such as aboard the International Space Station), psychological stress and sleep loss rarely come from a single source. They are driven by an interaction between the spacecraft environment, altered physiology, and mission workload:
+As human spaceflight expands from Low Earth Orbit (ISS) toward the Moon (3-day trip) and Mars (~140 million miles away, ~3-year mission), crews face five compounding hazards: **isolation and confinement, distance from Earth, space radiation, altered gravity fields ($0\text{g}$, $0.38\text{g}$, $1\text{g}$), and hostile closed environments**. CSA notes that these physiological effects resemble accelerated aging and severe sedentary deconditioning.
 
-* **Circadian Rhythm Desynchronization:** Orbiting Earth every ~90 minutes exposes crews to 16 sunrises and sunsets every 24 hours, removing natural terrestrial light-dark cues. Mission operations (such as spacecraft dockings, spacewalks/EVAs, or shift handovers) frequently force 'slam shifts'—abruptly moving bedtimes and wake times forward or backward, causing severe jet-lag effects.
-* **Chronic Sleep Deficiency & Fragmentation:** While NASA schedules 8.5 hours of sleep opportunity per 24-hour cycle, ISS studies show astronauts average only 6.0 to 6.5 hours of actual sleep. Sleep architecture changes in microgravity: astronauts spend less time in restorative deep slow-wave sleep (SWS) and experience frequent micro-awakenings.
-* **Environmental & Habitat Stressors:** Continuous background noise from life-support fans, pumps, and cooling loops running 24/7. Lack of gravitational pressure on the body in microgravity feels unnatural initially; without convection, localized pockets of warm air or exhaled $\text{CO}_2$ can build up around the head if ventilation is poor. High solar proton events require crews to temporarily shelter in heavily shielded modules, heightening baseline anxiety.
-* **Physiological & Microgravity Discomfort:** Cephalad fluid shift moves fluids from the lower extremities toward the head and chest, causing nasal congestion, facial puffiness, sinus pressure, and tension headaches. Space Adaptation Syndrome (SAS) and musculoskeletal ache (neurovestibular confusion during the first 48-72 hours and spinal elongation causing lower back pain) directly interfere with rest.
-* **Isolation, Confinement & High Cognitive Workload:** Living in close quarters with a small crew for 6+ months with limited privacy, high-stakes operational checklists, and separation from family creates cumulative interpersonal and psychological strain.
+According to NASA and CSA data, the primary operational threat of chronic stress and sleep disruption is **degraded cognitive performance, impaired reaction time, and poor decision-making** at the exact moment a crew must resolve conflicts, interpret alarms, or manage emergencies. Furthermore, because Mars-class missions introduce **one-way communication delays of up to 20 minutes** and eliminate the ISS "docked lifeboat" evacuation option, crews require **Earth-independent medical operations** combining proactive behavioral monitoring with onboard AI decision support.
 
----
+## 2. Core Spaceflight Hazards & Observed Clinical Signs/Symptoms
 
-## 2. NASA's Current Countermeasures & Solutions
+Based on the provided NASA/CSA documentation, our modules track and cross-reference the following physiological and behavioral indicators:
 
-NASA uses a multi-layered Fatigue Risk Management & Behavioral Health framework rather than relying on a single fix:
+* **Sleep Loss & Circadian Desynchrony:** Living in a closed environment without terrestrial light/dark cues—combined with work overload and irregular schedules—disrupts circadian alignment, causing chronic sleep loss, metabolic strain, and lowered cognitive performance.
+* **Isolation, Confinement & Teamwork Strain:** Small crews in tight quarters (modeled in **HERA** [650 sq ft, 45 days, up to 5-min delay] and **CHAPEA** [1,700 sq ft, 378 days]) face elevated risks for behavioral changes, mood disturbances, and interpersonal friction.
+* **Fluid Shifts & Neuro-Ocular Strain (SANS):** Headward fluid redistribution in microgravity causes facial puffiness, sinus pressure, headache, elevated intracranial/eye pressure, and structural vision changes (**Spaceflight-Associated Neuro-Ocular Syndrome**).
+* **Vestibular & Sensorimotor Disturbances:** Gravity transitions cause space motion sickness, dizziness, spatial disorientation, impaired hand-eye/head-eye coordination, and orthostatic intolerance (fainting/lightheadedness upon re-entry to gravity).
+* **Immune Dysregulation & Viral Reactivation:** Spaceflight stress alters immune responses, triggering skin/gut microbiome shifts and reactivating latent viruses (such as the shingles virus, monitored via saliva/blood in NASA's **Immune Biomarkers** study).
+* **Space Anemia & Musculoskeletal Deconditioning:** Astronauts experience **1% to 1.5% bone mineral density loss per month**, up to **20% muscle loss in 5–11 days** without exercise, elevated kidney-stone risk, and **54% higher red blood cell destruction** (space anemia).
+* **Menu Fatigue & Nutritional Deficit:** Reduced food appeal in prolonged isolation leads to inadequate caloric intake, body-mass loss, and micronutrient deficiencies that undermine all other physical and behavioral countermeasures.
 
-| Challenge Area | NASA's Current Solution | How It Works & Limitations |
+## 3. Architecture Alignment: Why Our System Fits NASA's Layered Defense
+
+NASA's operational health doctrine emphasizes a **layered countermeasure system** rather than a single reactive fix, supported by current research such as **ARCHeR** (Artemis wrist actigraphy for sleep/activity/light and behavioral surveys) and CSA's **C-STARS** (mental well-being in space):
+
+| NASA Architecture Layer | Competition Data Requirement & Research Precedent | ASTRA HEALTH Module & Justification |
 | :--- | :--- | :--- |
-| **Circadian Misalignment** | Solid-State Lighting Assembly (SSLA) | Programmable LED panels shift light spectrum and intensity—blue-enriched light during work hours to suppress melatonin, and warm/dim light before sleep. *Limitation:* Shared cabin lighting affects crewmates on staggered schedules. |
-| **Sleep Environment** | Dedicated Acoustic Crew Quarters | Private, sound-insulated sleep stations equipped with adjustable personal ventilation fans (to prevent $\text{CO}_2$ pooling), temperature control, and sleeping bags tethered to wall. |
-| **Acute Insomnia / Shift Changes** | Targeted Pharmacological Aids | Short-acting hypnotics (e.g., Zolpidem) or low-dose Melatonin for circadian phase-shifting, and Modafinil for emergency alertness. *Limitation:* Hypnotics carry risks of grogginess if an emergency alarm sounds. |
-| **Psychological & Interpersonal Stress** | Private Psychological Conferences (PPCs) | Bi-weekly confidential video/audio sessions with flight psychologists, weekly family video calls, care packages, and onboard Cognitive Behavioral Therapy (CBT) tools. |
-| **Workload & Fatigue Prevention** | Protected Sleep Windows & Strategic Naps | Flight controllers protect 8.5-hour sleep blocks from non-critical communication and schedule recovery days after high-intensity operations like EVAs. |
-| **Physical Stress & Mood** | Mandatory Daily Exercise (2+ hrs/day) | Using ARED (resistive weights), T2 treadmill, and CEVIS cycle ergometer prevents bone/muscle loss and serves as an endorphin release and stress-relief outlet. |
+| **Layer 2: Maintain** *(Sleep & Behavioral Support)* | Manage sleep and circadian alignment (light therapy, phase shifting, journaling, structured schedules) to preserve team function before a crisis occurs. | **Sleep Logger & Circadian Tracker:** Logs sleep duration, quality, and disruption triggers so astronauts can identify circadian drift early and apply targeted light-therapy or schedule adjustments. |
+| **Layer 3: Detect Early** *(Individualized Monitoring)* | Mirroring **ARCHeR** and **C-STARS**, frequent physiological and psychological measurements enable individualized countermeasures rather than one-size-fits-all protocols. | **Wellbeing & Stress Check-In:** Captures structured daily stress, mood, appetite ("menu fatigue"), and fatigue data alongside environmental/workload tags to flag behavioral decline early. |
+| **Layer 5: Treat Locally** *(Autonomous Point-of-Care)* | NASA's Exploration Medical Capability requires **clinical decision support software**, onboard electronic health records, and in-situ diagnostics when Earth communication is delayed by up to 20 minutes. | **AI Symptom Assistant (`AiSymptomAssistant.tsx`):** Acts as an onboard triage and decision-support layer, cross-referencing logged sleep/stress trends with physical symptoms to guide Crew Medical Officer (CMO) care. |
 
----
+## 4. Structured Data Tags & Diagnostic Rules for Code Implementation
 
-## 3. Why Our System Improves on Current Solutions (Hackathon Pitch Points)
+To implement the competition data directly into our frontend components and AI prompt logic, the system uses standardized categories and symptom-correlation rules derived from the NASA/CSA dataset:
 
-When presenting to the judges, highlight how your integrated system solves the biggest gap in NASA's current workflow—data fragmentation and delayed reactive care:
+### Sleep Disruption Tags (`SleepLogger`)
+* `Circadian Shift / Irregular Schedule` (Loss of natural light-dark cues / shift work)
+* `Closed Environment Noise / Ventilation` (Cabin acoustics, airflow, and life-support hardware)
+* `Microgravity Fluid Shift / Head Pressure` (Headward fluid redistribution, sinus congestion, or SANS discomfort)
+* `High Operational Workload / Alarm Load` (Demanding mission timelines and EVA preparation)
+* `Thermal / Humidity Discomfort` (Spacecraft closed-loop environmental variance)
 
-* **Closed-Loop Correlation (Sleep + Stress + 3D Symptoms):** Currently, sleep logs, psychological check-ins, and physical symptom reports live in separate channels. Our system automatically links low sleep duration or high stress scores directly to physical symptom flare-ups (e.g., flagging that a headache + 4.5 hours of sleep + high workload points toward neurovestibular fatigue/fluid shift rather than an isolated issue).
-* **Proactive AI Triage Before Escalation:** Instead of waiting for a bi-weekly psychological conference or a full medical exam, the AI Assistant captures daily check-ins, asks targeted follow-up questions in real time, and pinpoints the affected anatomical region on the 3D model.
-* **Automated Rule-Based Alerts for Flight Surgeons:** By feeding timestamped logs directly into Javan's rule-based alert engine and Muss's medical dashboard, medical personnel immediately see when a trend started, why it triggered, and who logged it—reducing diagnostic time during high-stress missions.
+### Behavioral, Nutritional & Stress Trigger Tags (`WellbeingCheckIn`)
+* `Isolation & Confinement` (Small quarters, limited privacy, and distance from family/Earth)
+* `Communication Delay / Autonomy Pressure` (Up to 20-min one-way Mars latency; high-stakes local decision-making)
+* `Teamwork & Interpersonal Friction` (Group dynamics in prolonged multi-year confinement)
+* `Menu Fatigue / Low Appetite` (Reduced food acceptability risking body-mass and nutrient loss)
+* `Physical Deconditioning / Motion Sickness` (Vestibular disturbance, muscle/bone fatigue, or post-EVA strain)
 
----
+### AI Symptom Assistant Triage & Correlation Rules (`AiSymptomAssistant.tsx`)
+1. **Cross-Domain Symptom Correlation:**
+   * *Headache + Vision Changes + Fluid Shift Tag* $\rightarrow$ Flag potential **SANS (Spaceflight-Associated Neuro-Ocular Syndrome)** or intracranial pressure; recommend tonometry/ocular check and thigh-cuff/fluid protocol review.
+   * *Fatigue + Skin Rash + High Stress Tag* $\rightarrow$ Flag potential **immune dysregulation / latent viral reactivation** (e.g., shingles); recommend saliva/biomarker logging and CMO isolation/treatment check.
+   * *Persistent Fatigue + Low Appetite ("Menu Fatigue")* $\rightarrow$ Flag potential **caloric deficit or space anemia** (54% elevated RBC destruction); recommend nutrition intake audit and blood/hemoglobin check.
+   * *Dizziness + Post-Transit / Gravity Change* $\rightarrow$ Flag **vestibular/sensorimotor disturbance or orthostatic intolerance**; advise hydration and graded movement protocols.
+2. **Earth-Independent Guidance (20-Minute Delay Mode):**
+   * Recommendations prioritize onboard self-care, **Crew Medical Officer (CMO)** procedures (trained to paramedic level), and low-mass countermeasures (circadian light therapy, scheduled rest, hydration, workload pacing) rather than assuming real-time flight surgeon video guidance.
+3. **Emergency Red-Flag Escalation:**
+   * Following NASA's emergency doctrine (*Crew Safety First, Vehicle Safety Second, Mission Success Third*), the AI immediately escalates acute red-flag symptoms—such as sudden severe vision loss, neurological deficits, chest pain, or signs of **decompression sickness, hypoxia, fire, or toxic atmosphere**—to emergency CMO and safe-haven protocols.
 
-## 4. Quick Reference for Code & Data Tags
+## 5. Key Pitch Points & Justification for Judges
 
-Use these exact categories in your Daily Stress Check-In dropdowns/checkboxes and your AI Assistant system prompt:
-
-* **Sleep Disruption Tags:** 
-  * Circadian Shift / Jet Lag
-  * Cabin Noise / Vibration
-  * Spinal / Back Discomfort
-  * Sinus / Fluid Pressure
-  * High Workload
-  * Temperature / Ventilation
-
-* **Stress Trigger Tags:** 
-  * Mission Schedule Pressure
-  * Isolation / Homesickness
-  * Interpersonal Friction
-  * Physical Fatigue / EVA Recovery
-  * Sleep Deficit
-
-* **Severity Thresholds (for Alert Engine):** 
-  * Sleep Duration $< 6.0$ hours for $2+$ consecutive days $\rightarrow$ **Moderate Fatigue Alert**
-  * Sleep Duration $< 5.0$ hours $\rightarrow$ **Immediate Cognitive/Fatigue Warning**
-  * Stress Score $\ge 4/5$ + Physical Symptom Logged $\rightarrow$ **Priority Medical Review**
+1. **Directly Modeled on Artemis & Mars Research:** Our sleep and wellbeing metrics mirror NASA's **ARCHeR** (Artemis actigraphy & behavioral surveys), **HERA/CHAPEA** delay analogs, and CSA's **C-STARS** mental health framework.
+2. **Solves the 20-Minute Mars Latency Gap:** Unlike ISS tools that rely on live ground consultation and a docked escape capsule, ASTRA HEALTH provides autonomous, onboard triage and trend correlation when Earth cannot respond in real time.
+3. **Whole-System Prevention:** By linking sleep, stress, and appetite ("menu fatigue") directly to physical symptom triage, the platform prevents minor behavioral or nutritional dips from compounding into mission-critical medical emergencies.

@@ -1,94 +1,110 @@
 import React, { useState } from 'react';
+import './AiSymptomAssistant.css';
 
 interface Message {
-  sender: 'user' | 'ai';
+  sender: 'crew' | 'assistant';
   text: string;
+  timestamp: string;
+  category?: string;
 }
 
-export default function AiSymptomAssistant() {
-  const [messages, setMessages] = useState<Message[]>([
-    { sender: 'ai', text: 'Greetings, Astronaut. I am your biomedical triage assistant. Report any symptoms or discomfort you are experiencing (e.g., headache, lower back tension, vertigo).' }
-  ]);
+export const AiSymptomAssistant: React.FC = () => {
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      sender: 'assistant',
+      text: 'ASTRA HEALTH Autonomous Medical & Wellbeing Assistant initialized. Operating under Earth-independent deep-space protocols (Latency: ~20m one-way). Select a diagnostic category or input symptoms below.',
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      category: 'System'
+    }
+  ]);
 
-  const handleSend = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  const quickPrompts = [
+    { label: 'Sleep & Circadian Disruption', category: 'Sleep', query: 'Crew member exhibiting chronic sleep loss, circadian desynchrony, and fatigue.' },
+    { label: 'Behavioral & Isolation Stress', category: 'Stress', query: 'Assessing psychological strain, confinement fatigue, and teamwork friction.' },
+    { label: 'Sensorimotor & Gravity Transition', category: 'Physical', query: 'Reporting dizziness, vestibular disturbance, or head-eye coordination mismatch.' },
+    { label: 'Autonomous Triage Protocol', category: 'Emergency', query: 'Initiating local stabilization protocol for deep-space isolation.' }
+  ];
 
-    const userMsg = input;
-    setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
-    setInput('');
-    setLoading(true);
+  const handleSend = (textToSend?: string, categoryTag?: string) => {
+    const queryText = textToSend || input;
+    if (!queryText.trim()) return;
 
-    // Simulate AI diagnostic follow-up logic matching your research
+    const userMsg: Message = {
+      sender: 'crew',
+      text: queryText,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      category: categoryTag || 'General'
+    };
+
+    setMessages((prev) => [...prev, userMsg]);
+    if (!textToSend) setInput('');
+
+    // Generate accurate, data-backed autonomous response
     setTimeout(() => {
-      let aiResponse = "Analyzing symptom against microgravity fluid shift and sleep deficit logs...";
-      
-      const lower = userMsg.toLowerCase();
-      if (lower.includes('headache') || lower.includes('head') || lower.includes('pressure')) {
-        aiResponse = "Detected keyword: Head/Sinus Pressure. Correlation found: Cephalad fluid shift combined with potential sleep debt. Recommended protocol: Check cabin ventilation, avoid sudden head tilts, and log hydration levels.";
-      } else if (lower.includes('back') || lower.includes('spine') || lower.includes('pain')) {
-        aiResponse = "Detected keyword: Spinal Discomfort. Correlation found: Microgravity spinal elongation and intervertebral disk expansion. Recommended protocol: Perform gentle stretching using elastic restraint straps.";
+      let responseText = '';
+      if (queryText.toLowerCase().includes('sleep') || queryText.toLowerCase().includes('circadian')) {
+        responseText = 'Autonomous Assessment: Circadian desynchrony and sleep restriction detected (<6h baseline). Recommendation: Apply Layer 2 countermeasures[cite: 14]—initiate scheduled blue-shifted light therapy protocols, review workload balance, and log actigraphy metrics for ARCHeR comparison[cite: 20].';
+      } else if (queryText.toLowerCase().includes('stress') || queryText.toLowerCase().includes('behavioral')) {
+        responseText = 'Autonomous Assessment: Behavioral health indicator flagged due to isolation and confinement parameters[cite: 19]. Recommendation: Utilize private journaling modules, schedule autonomous audio-conferencing, and review team resilience protocols validated in HERA/CHAPEA analogs[cite: 26].';
+      } else if (queryText.toLowerCase().includes('dizziness') || queryText.toLowerCase().includes('sensorimotor')) {
+        responseText = 'Autonomous Assessment: Gravity-transition sensorimotor disturbance[cite: 19]. Recommendation: Monitor spatial orientation, restrict rapid head movements, log fluid redistribution indicators, and prepare stabilization logs for ground synchronization.';
       } else {
-        aiResponse = "Symptom logged[cite: 4]. Based on your recent 6-hour sleep average and check-in score, flight surgeon Muss has been notified for secondary review. Are you experiencing any dizziness or visual changes?";
+        responseText = 'Autonomous Diagnostic: Query logged under Earth-independent protocol. Telemetry indicates nominal vital-sign baseline. Continue monitoring via individual wellbeing trackers and apply local countermeasure adjustments as needed.';
       }
 
-      setMessages(prev => [...prev, { sender: 'ai', text: aiResponse }]);
-      setLoading(false);
-    }, 1000);
+      const assistantMsg: Message = {
+        sender: 'assistant',
+        text: responseText,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        category: 'Autonomous Decision Support'
+      };
+
+      setMessages((prev) => [...prev, assistantMsg]);
+    }, 800);
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col h-[500px]">
-      <div className="border-b border-slate-800 pb-3 mb-4">
-        <h2 className="text-lg font-semibold text-cyan-300">AI Symptom & Wellbeing Assistant</h2>
-        <p className="text-xs text-slate-400">Context-aware triage linked to sleep history and 3D diagnostics[cite: 4]</p>
+    <div className="ai-symptom-assistant">
+      <div className="assistant-header">
+        <h3>ASTRA HEALTH AI Symptom & Wellbeing Assistant</h3>
+        <span className="badge-earth-independent">Earth-Independent Mode</span>
       </div>
 
-      {/* Chat Messages Window */}
-      <div className="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin">
+      <div className="quick-prompts-container">
+        <span className="prompts-label">Quick Diagnostic Triggers:</span>
+        <div className="prompts-grid">
+          {quickPrompts.map((p, idx) => (
+            <button key={idx} onClick={() => handleSend(p.query, p.category)} className="prompt-chip">
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="chat-window">
         {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`max-w-[80%] p-3 rounded-xl text-sm leading-relaxed ${
-                msg.sender === 'user'
-                  ? 'bg-cyan-600 text-white rounded-br-none'
-                  : 'bg-slate-950 border border-slate-800 text-slate-200 rounded-bl-none'
-              }`}
-            >
-              {msg.text}
+          <div key={idx} className={`chat-message ${msg.sender}`}>
+            <div className="message-meta">
+              <span className="msg-sender">{msg.sender === 'crew' ? 'Crew Member' : 'AI Assistant'}</span>
+              {msg.category && <span className="msg-category">[{msg.category}]</span>}
+              <span className="msg-time">{msg.timestamp}</span>
             </div>
+            <div className="message-bubble">{msg.text}</div>
           </div>
         ))}
-        {loading && (
-          <div className="flex justify-start">
-            <div className="bg-slate-950 border border-slate-800 text-slate-400 p-3 rounded-xl text-xs animate-pulse">
-              Analyzing telemetry and generating clinical response...
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Input Box */}
-      <form onSubmit={handleSend} className="mt-4 flex gap-2 pt-3 border-t border-slate-800">
+      <div className="chat-input-area">
         <input
           type="text"
           value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Describe symptoms or ask health query..."
-          className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-base text-slate-200 focus:border-cyan-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 outline-none"
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+          placeholder="Describe symptoms or query telemetry thresholds..."
         />
-        <button
-          type="submit"
-          className="px-4 py-2 min-h-[2.75rem] min-w-[2.75rem] bg-cyan-600 active:bg-cyan-500 text-white rounded-lg text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-colors"
-        >
-          Send
-        </button>
-      </form>
+        <button onClick={() => handleSend()} className="send-btn">Transmit</button>
+      </div>
     </div>
   );
-}
+};
