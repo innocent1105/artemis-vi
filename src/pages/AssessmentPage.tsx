@@ -24,7 +24,7 @@ export function AssessmentPage() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-astra-navy p-8">
+    <div className="flex flex-col min-h-[100svh] bg-astra-navy p-8">
       <h2 className="text-2xl font-bold text-white mb-6">Guided Assessment</h2>
       <AssessmentSelector onStart={(type) => { setSelectedType(type); setView("assessment"); }} />
     </div>

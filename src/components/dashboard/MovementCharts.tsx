@@ -16,10 +16,10 @@ interface MovementChartsProps {
 
 export function MovementCharts({ angles }: MovementChartsProps) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="rounded-xl border border-astra-border/50 bg-black/40 p-5">
         <h3 className="text-xs font-mono text-astra-slate uppercase mb-4">Joint Angle Progression</h3>
-        <div className="h-64">
+        <div className="h-48 sm:h-64">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={angles}>
               <CartesianGrid strokeDasharray="3 3" stroke="white/5" />
@@ -34,7 +34,7 @@ export function MovementCharts({ angles }: MovementChartsProps) {
       </div>
       <div className="rounded-xl border border-astra-border/50 bg-black/40 p-5">
         <h3 className="text-xs font-mono text-astra-slate uppercase mb-4">Repetition Consistency</h3>
-        <div className="h-64">
+        <div className="h-48 sm:h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={angles}>
               <CartesianGrid strokeDasharray="3 3" stroke="white/5" />

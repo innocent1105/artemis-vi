@@ -80,11 +80,11 @@ export default function AiSymptomAssistant() {
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder="Describe symptoms or ask health query..."
-          className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 outline-none"
+          className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-base text-slate-200 focus:border-cyan-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 outline-none"
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-sm font-medium transition-colors"
+          className="px-4 py-2 min-h-[2.75rem] min-w-[2.75rem] bg-cyan-600 active:bg-cyan-500 text-white rounded-lg text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-colors"
         >
           Send
         </button>

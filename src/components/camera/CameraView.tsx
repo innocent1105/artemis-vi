@@ -169,7 +169,7 @@ export function CameraView({
               setError(null);
               initRef.current?.();
             }}
-            className="mt-4 px-4 py-2 text-sm text-astra-cyan underline"
+            className="mt-4 min-h-[2.75rem] min-w-[2.75rem] px-4 py-2 text-sm text-astra-cyan active:text-astra-cyan/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan underline"
           >
             Retry
           </button>

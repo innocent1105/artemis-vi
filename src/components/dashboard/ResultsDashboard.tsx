@@ -20,17 +20,18 @@ export function ResultsDashboard({ record, onBack }: ResultsDashboardProps) {
   return (
     <div className="flex flex-col h-full">
       <div className="px-6 py-6 border-b border-astra-border/50">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-1 text-astra-cyan hover:text-white transition"
-          >
-            <ChevronLeft size={18} /> Back to History
-          </button>
-        </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1 min-h-[2.75rem] min-w-[2.75rem] text-astra-cyan active:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan transition"
+              aria-label="Back to history"
+            >
+              <ChevronLeft size={18} /> Back to History
+            </button>
+          </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 py-8">
+      <div className="flex-1 overflow-y-auto px-6 py-8 pb-[env(safe-area-inset-bottom)]">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-2">

@@ -29,3 +29,24 @@ export interface DetectionStatus {
   visibility: number;
   missingLandmarks: string[];
 }
+
+export interface AstronautProfile {
+  id: string;
+  name: string;
+  crewId: string;
+  missionName: string;
+  missionRole: string;
+  missionStatus: string;
+  avatarUrl: string | null;
+  isSampleData: boolean;
+}
+
+export interface AlertItem {
+  id: number;
+  title: string;
+  detail: string;
+  severity: "info" | "attention" | "critical";
+  status: "new" | "acknowledged" | "under_review" | "resolved";
+  time: string;
+  isSampleData?: boolean;
+}

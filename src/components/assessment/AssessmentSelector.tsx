@@ -37,9 +37,9 @@ export function AssessmentSelector({ onStart }: AssessmentSelectorProps) {
             <div className="flex gap-2">
               <button
                 onClick={() => setSelected(null)}
-                className={`px-4 py-2 rounded border text-sm font-medium transition ${
-                  selected ? "bg-astra-cyan/10 border-astra-cyan text-astra-cyan" : "border-astra-border/50 text-astra-slate hover:bg-white/5"
-                }`}
+                className={`px-4 py-2 min-h-[2.75rem] min-w-[2.75rem] rounded border text-sm font-medium transition ${
+                  selected ? "bg-astra-cyan/10 border-astra-cyan text-astra-cyan active:bg-astra-cyan/20" : "border-astra-border/50 text-astra-slate active:bg-white/5"
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan`}
               >
                 All Assessments
               </button>
@@ -54,11 +54,12 @@ export function AssessmentSelector({ onStart }: AssessmentSelectorProps) {
               return (
                 <div
                   key={type}
+                  role="button"
                   onClick={() => setSelected(isSelected ? null : type)}
-                  className={`group cursor-pointer rounded-xl border p-6 transition-all ${
+                  className={`group cursor-pointer rounded-xl border p-6 min-h-[2.75rem] transition-all ${
                     isSelected
-                      ? "bg-astra-cyan/10 border-astra-cyan shadow-[0_0_20px_rgba(34,211,238,0.15)]"
-                      : "border-astra-border/50 bg-black/30 hover:border-astra-cyan/50 hover:bg-black/50"
+                      ? "bg-astra-cyan/10 border-astra-cyan shadow-[0_0_20px_rgba(34,211,238,0.15)] active:bg-astra-cyan/20"
+                      : "border-astra-border/50 bg-black/30 active:border-astra-cyan/50 active:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan"
                   }`}
                 >
                   <div className="w-12 h-12 rounded-lg bg-astra-navyLight flex items-center justify-center mb-4 group-hover:scale-110 transition">
@@ -81,7 +82,7 @@ export function AssessmentSelector({ onStart }: AssessmentSelectorProps) {
                       e.stopPropagation();
                       setSelected(type);
                     }}
-                    className="w-full py-2 rounded border text-sm font-medium transition text-astra-slate border-astra-border/50 hover:bg-white/5 group-hover:border-astra-cyan group-hover:text-astra-cyan"
+                    className="w-full min-h-[2.75rem] py-2 rounded border text-sm font-medium transition text-astra-slate border-astra-border/50 active:bg-white/5 active:border-astra-cyan active:text-astra-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan"
                   >
                     {isSelected ? "Deselect" : "Select"}
                   </button>
@@ -94,13 +95,13 @@ export function AssessmentSelector({ onStart }: AssessmentSelectorProps) {
 
       {selected && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-6">
-          <div className="bg-astra-navy rounded-2xl border border-astra-border w-full max-w-md p-8 shadow-2xl">
+          <div role="dialog" aria-modal="true" aria-labelledby="assessment-dialog-title" className="bg-astra-navy rounded-2xl border border-astra-border w-full max-w-md p-8 shadow-2xl">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-astra-cyan/10 flex items-center justify-center">
                 <Play className="w-5 h-5 text-astra-cyan" />
               </div>
               <div>
-                <h3 className="text-white font-semibold">Start Assessment</h3>
+                <h3 id="assessment-dialog-title" className="text-white font-semibold">Start Assessment</h3>
                 <p className="text-astra-slate text-xs">{getProtocol(selected).name}</p>
               </div>
             </div>
@@ -110,13 +111,13 @@ export function AssessmentSelector({ onStart }: AssessmentSelectorProps) {
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => onStart(selected!)}
-                className="w-full py-3 bg-astra-cyan text-astra-navy font-semibold rounded-lg hover:bg-astra-cyan/80 transition"
+                className="w-full min-h-[2.75rem] py-3 bg-astra-cyan text-astra-navy font-semibold rounded-lg active:bg-astra-cyan/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan transition"
               >
                 Start Assessment
               </button>
               <button
                 onClick={() => setSelected(null)}
-                className="w-full py-2 rounded border border-astra-border/50 text-astra-slate text-sm font-medium hover:bg-white/5 transition"
+                className="w-full min-h-[2.75rem] py-2 rounded border border-astra-border/50 text-astra-slate text-sm font-medium active:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-astra-cyan transition"
               >
                 Cancel
               </button>

@@ -25,10 +25,14 @@ html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
-  background-color: #020617;
+  min-height: 100svh;
+  overflow-x: hidden;
   color: #f8fafc;
   font-family: var(--font-sans);
+}
+
+html, body {
+  background-color: #020617;
 }
 
 #root {
