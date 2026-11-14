@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { Activity, Moon, Brain, ShieldCheck, AlertTriangle } from "lucide-react";
 import { evaluateAll, getAlerts } from "../engine/evaluate";
 import type { HealthRecord, Alert } from "../types/health";
+import type { LoggedAssessment } from "../components/wellbeing/AiSymptomAssistant";
 
-export function HealthTimelinePage() {
+interface HealthTimelinePageProps {
+  missionTriageLogs?: LoggedAssessment[];
+}
+
+export function HealthTimelinePage({ missionTriageLogs = [] }: HealthTimelinePageProps) {
   const [records, setRecords] = useState<HealthRecord[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [highlightedIds, setHighlightedIds] = useState<string[]>([]);
@@ -15,10 +20,25 @@ export function HealthTimelinePage() {
 
     // 2. Run the engine on the loaded records
     evaluateAll(rawRecords, "astro-1");
-    
+
     // 3. Load the generated alerts
     setAlerts(getAlerts());
   }, []);
+
+  // Merge triage ledger entries into the timeline as "triage" source records
+  const triageRecords: HealthRecord[] = missionTriageLogs.map((log) => ({
+    id: `triage-${log.id}`,
+    source: "triage" as const,
+    timestamp: log.timestamp,
+    actorId: log.crewName,
+    reason: log.category,
+    summary: log.summary,
+    severity: log.severity,
+  }));
+
+  const allRecords = [...records, ...triageRecords].sort(
+    (a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 max-w-7xl mx-auto">
@@ -58,7 +78,7 @@ export function HealthTimelinePage() {
         </h2>
         
         <div className="space-y-2">
-          {records.map((record) => {
+          {allRecords.map((record) => {
             const isHighlighted = highlightedIds.includes(record.id);
             return (
               <div 
@@ -72,10 +92,11 @@ export function HealthTimelinePage() {
                   {record.source === "wellbeing" && <Brain className="w-4 h-4 text-purple-400" />}
                   {record.source === "movement" && <Activity className="w-4 h-4 text-emerald-400" />}
                   {record.source === "symptom" && <ShieldCheck className="w-4 h-4 text-red-400" />}
+                  {record.source === "triage" && <AlertTriangle className="w-4 h-4 text-amber-400" />}
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between items-center mb-0.5">
-                    <span className="font-medium capitalize text-sm text-white">{record.source} Session</span>
+                    <span className="font-medium capitalize text-sm text-white">{record.source === "triage" ? "Triage Assessment" : record.source} Session</span>
                     <span className="text-[10px] text-slate-400">{new Date(record.timestamp).toLocaleString()}</span>
                   </div>
                   
@@ -84,6 +105,7 @@ export function HealthTimelinePage() {
                     {record.source === "wellbeing" && `Stress: ${record.stress}/10 | Mood: ${record.mood}/10`}
                     {record.source === "movement" && `Mobility Score: ${record.metrics?.mobilityScore || "N/A"}`}
                     {record.source === "symptom" && `Severity: ${record.severity} | ${record.description}`}
+                    {record.source === "triage" && `${record.severity} | ${record.summary}`}
                   </p>
                   
                   <div className="mt-1 text-[10px] text-slate-500 flex gap-3">

@@ -31,6 +31,7 @@ import { ScoreTrend } from "../components/dashboard/ScoreTrend";
 import { BottomTabBar } from "../components/dashboard/BottomTabBar";
 import type { AssessmentRecord } from "../types/assessment";
 import type { AlertItem, AstronautProfile as AstronautProfileType } from "../types/health";
+import type { LoggedAssessment } from "../components/wellbeing/AiSymptomAssistant";
 import { assessmentRepository } from "../storage/assessmentRepository";
 import { useMedicalData } from "../hooks/useMedicalData";
 
@@ -55,7 +56,7 @@ const sampleAstronautProfile: AstronautProfileType = {
   isSampleData: true,
 };
 
-export function DashboardPage() {
+export function DashboardPage({ missionTriageLogs = [] }: { missionTriageLogs?: LoggedAssessment[] }) {
   const {
     astronauts,
     selectedAstronaut,
@@ -385,7 +386,7 @@ export function DashboardPage() {
             )}
 
             {tab === "timeline" && (
-              <HealthTimelinePage />
+              <HealthTimelinePage missionTriageLogs={missionTriageLogs} />
             )}
           </div>
         </main>
