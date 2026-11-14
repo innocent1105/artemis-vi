@@ -1,13 +1,13 @@
-import { Activity, Bell, UserRound, Clock3 } from "lucide-react";
+import { Activity, Bell, UserRound, Clock3, Layers } from "lucide-react";
 
 interface BottomTabBarProps {
-  active: "overview" | "alerts" | "profile" | "history";
-  onChange: (tab: "overview" | "alerts" | "profile" | "history") => void;
+  active: "overview" | "alerts" | "profile" | "history" | "timeline";
+  onChange: (tab: "overview" | "alerts" | "profile" | "history" | "timeline") => void;
   alertsCount: number;
 }
 
 const TABS: Array<{
-  id: "overview" | "alerts" | "profile" | "history";
+  id: "overview" | "alerts" | "profile" | "history" | "timeline";
   label: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
 }> = [
@@ -15,6 +15,7 @@ const TABS: Array<{
   { id: "alerts", label: "Alerts", icon: Bell },
   { id: "profile", label: "Profile", icon: UserRound },
   { id: "history", label: "History", icon: Clock3 },
+  { id: "timeline", label: "Timeline", icon: Layers },
 ];
 
 export function BottomTabBar({ active, onChange, alertsCount }: BottomTabBarProps) {

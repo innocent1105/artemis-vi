@@ -50,3 +50,6 @@ export interface AlertItem {
   time: string;
   isSampleData?: boolean;
 }
+
+export type HealthRecord = any;
+export type Alert = any;

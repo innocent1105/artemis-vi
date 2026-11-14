@@ -1,3 +1,4 @@
+import { HealthTimelinePage } from "./HealthTimelinePage";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -10,6 +11,7 @@ import {
   ClipboardCheck,
   Clock3,
   HeartPulse,
+  Layers,
   Menu,
   Orbit,
   Radio,
@@ -33,7 +35,7 @@ import { assessmentRepository } from "../storage/assessmentRepository";
 import { useMedicalData } from "../hooks/useMedicalData";
 
 type View = "dashboard" | "selector" | "assessment" | "results";
-type Tab = "overview" | "alerts" | "profile" | "history";
+type Tab = "overview" | "alerts" | "profile" | "history" | "timeline";
 
 const demoVitals = [
   { label: "Heart rate", value: "68", unit: "bpm", note: "Example reading", icon: HeartPulse },
@@ -182,6 +184,7 @@ export function DashboardPage() {
             <NavItem icon={<UserRound size={17} />} label="Astronaut profile" active={tab === "profile"} onClick={() => { setTab("profile"); setMobileNavOpen(false); }} />
             <NavItem icon={<ClipboardCheck size={17} />} label="Movement assessments" onClick={() => { setView("selector"); setMobileNavOpen(false); }} />
             <NavItem icon={<Clock3 size={17} />} label="Health history" active={tab === "history"} onClick={() => { setTab("history"); setMobileNavOpen(false); }} />
+<NavItem icon={<Layers size={17} />} label="Health timeline" active={tab === "timeline"} onClick={() => { setTab("timeline"); setMobileNavOpen(false); }} />
           </nav>
           <div className="mt-auto rounded-xl border border-cyan-400/15 bg-cyan-400/[0.06] p-4">
             <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-cyan-300"><ShieldCheck size={15} /> Prototype environment</div>
@@ -379,6 +382,10 @@ export function DashboardPage() {
 
             {tab === "history" && (
               <HealthHistory alerts={alerts} onAcknowledgeAlert={acknowledgeAlert} />
+            )}
+
+            {tab === "timeline" && (
+              <HealthTimelinePage />
             )}
           </div>
         </main>
