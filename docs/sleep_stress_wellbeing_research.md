@@ -60,6 +60,26 @@ To implement the competition data directly into our frontend components and AI p
 3. **Emergency Red-Flag Escalation:**
    * Following NASA's emergency doctrine (*Crew Safety First, Vehicle Safety Second, Mission Success Third*), the AI immediately escalates acute red-flag symptoms—such as sudden severe vision loss, neurological deficits, chest pain, or signs of **decompression sickness, hypoxia, fire, or toxic atmosphere**—to emergency CMO and safe-haven protocols.
 
+## 6. Earth-Independent Decision Support Protocol (~20-Minute Latency)
+
+Mars-class missions introduce one-way communication delays of up to 20 minutes between Earth and the spacecraft, making real-time flight surgeon consultation impossible. ASTRA HEALTH's Earth-independent protocol ensures continuous health monitoring and triage without ground dependency:
+
+### 6.1 Local Triage & Ledger
+The `AiSymptomAssistant` component runs entirely on-device. Symptom reports, sleep/stress check-ins, and movement assessment results are correlated locally using the onboard triage rules in Section 4.2. Each autonomous assessment is written to the `astra_mission_triage_logs` localStorage ledger with severity badges (NOMINAL / CAUTION / CRITICAL), crew name, category, and timestamp. The Central Mission Triage Ledger surfaces these entries so the Crew Medical Officer (CMO) can review them without waiting for ground downlink.
+
+### 6.2 Timeline Integration
+Triage ledger entries are passed through `App.tsx` → `DashboardPage` → `HealthTimelinePage` as `missionTriageLogs`, where they render natively alongside sleep, wellbeing, movement, and symptom records in the Central Health Timeline. Each triage entry is tagged with source `"triage"` and an `AlertTriangle` icon, allowing medical personnel to see autonomous triage assessments in the same longitudinal view as other mission event markers.
+
+### 6.3 Crew Telemetry Enrichment
+The `CrewTelemetry` interface (`src/types/telemetry.ts`) extends triage context with deep-space environmental and physiological metrics: ambient CO₂ levels, radiation exposure counters, heart rate variability (HRV), cabin temperature, cabin pressure, sleep quality, stress, mood, and fatigue ratings. These metrics enrich the autonomous diagnostic prompts, making triage decisions more data-rich when Earth guidance is delayed.
+
+### 6.4 Queued Ground Downlink
+All triage logs are persisted to `localStorage` and marked as "queued for ground telemetry downlink." When communication is restored (e.g., during a contact window), the ledger can be exported and transmitted to mission control. The 20-minute latency is thus absorbed by local autonomy for immediate decisions, with deferred review by ground medical personnel for long-term trend analysis.
+
+### 6.5 Emergency Escalation
+Acute red-flag symptoms (sudden vision loss, neurological deficits, chest pain, decompression sickness, hypoxia, fire, toxic atmosphere) bypass the 20-minute delay protocol and trigger immediate local CMO and safe-haven procedures, following NASA's doctrine: Crew Safety First, Vehicle Safety Second, Mission Success Third.
+
+
 ## 5. Key Pitch Points & Justification for Judges
 
 1. **Directly Modeled on Artemis & Mars Research:** Our sleep and wellbeing metrics mirror NASA's **ARCHeR** (Artemis actigraphy & behavioral surveys), **HERA/CHAPEA** delay analogs, and CSA's **C-STARS** mental health framework.
