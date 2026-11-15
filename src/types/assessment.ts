@@ -1,5 +1,3 @@
-import type { BodyMapAssessment } from "./bodyMap";
-
 export type AssessmentType =
   | "full_body"
   | "squat"
@@ -81,8 +79,6 @@ export interface AssessmentRecord {
   findings: string[];
   recommendations: string[];
   status: "completed";
-  /** Per-region anatomical map derived from MediaPipe joint coordinates. */
-  bodyMap?: BodyMapAssessment;
 }
 
 export interface AssessmentComparison {

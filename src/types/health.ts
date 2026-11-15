@@ -38,6 +38,7 @@ export interface AstronautProfile {
   missionRole: string;
   missionStatus: string;
   avatarUrl: string | null;
+  isSampleData: boolean;
 }
 
 export interface AlertItem {
@@ -47,26 +48,5 @@ export interface AlertItem {
   severity: "info" | "attention" | "critical";
   status: "new" | "acknowledged" | "under_review" | "resolved";
   time: string;
-}
-
-// Health Consultation Types
-export type HealthSignId = 
-  | "nausea" 
-  | "fatigue" 
-  | "body_pains" 
-  | "flu_symptoms" 
-  | "headache" 
-  | "dizziness" 
-  | "shortness_of_breath" 
-  | "chest_pain" 
-  | "fever" 
-  | "other";
-
-export interface HealthConsultationRecord {
-  id: string;
-  astronautId: string;
-  date: number;
-  detectedSigns: HealthSignId[];
-  transcript: string;
-  status: "completed" | "in_progress";
+  isSampleData?: boolean;
 }
