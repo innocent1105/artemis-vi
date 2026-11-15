@@ -67,11 +67,16 @@ export function LandingPage() {
                 onClick={handleLoginClick}
                 className="flex-1 sm:flex-1 px-5 py-3 bg-white text-[#020617] font-semibold rounded hover:bg-slate-200 transition-colors"
               >
-                Log In to Mission Control
+                Get Started
               </button>
-              <button className="flex-1 sm:flex-1 px-5 py-3 border border-slate-600 text-slate-200 font-semibold rounded hover:bg-slate-800 transition-colors">
+              <a
+                href="https://www.nasa.gov/hrp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 sm:flex-1 px-5 py-3 border border-slate-600 text-slate-200 font-semibold rounded hover:bg-slate-800 transition-colors"
+              >
                 Read Documentation
-              </button>
+              </a>
             </div>
           </section>
 
