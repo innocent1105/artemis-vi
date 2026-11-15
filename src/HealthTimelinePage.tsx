@@ -26,7 +26,7 @@ export function HealthTimelinePage() {
         {alerts.map((alert) => (
           <div
             key={alert.id}
-            onClick={() => setHighlightedIds(alert.contributingRecordIds)}
+            onClick={() => setHighlightedIds(alert.contributingRecordIds || [])}
             className="cursor-pointer p-4 rounded-lg bg-slate-900 border-l-4 border-red-500"
           >
             <h3 className="font-bold text-white text-sm">{alert.title}</h3>

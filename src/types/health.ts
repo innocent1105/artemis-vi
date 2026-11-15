@@ -70,3 +70,43 @@ export interface HealthConsultationRecord {
   transcript: string;
   status: "completed" | "in_progress";
 }
+
+// Health Timeline Types
+export interface HealthRecord {
+  id: string;
+  source: string;
+  astronautId?: string;
+  actorId?: string;
+  timestamp: string;
+  durationHours?: number;
+  stress?: number;
+  mood?: number;
+  description?: string;
+  severity?: string;
+  metrics?: Record<string, any>;
+  reason?: string;
+  summary?: string;
+  contributingRecordIds?: string[];
+}
+
+export interface Alert {
+  id: string | number;
+  title: string;
+  explanation: string;
+  severity: string;
+  status: string;
+  contributingRecordIds?: string[];
+  createdAt?: string;
+  ruleId?: string;
+  astronautId?: string;
+}
+
+// Mission Triage Log Types
+export interface LoggedAssessment {
+  id: string;
+  timestamp: string;
+  crewName: string;
+  category: string;
+  summary: string;
+  severity: string;
+}

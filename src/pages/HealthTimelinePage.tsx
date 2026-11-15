@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Activity, Moon, Brain, ShieldCheck, AlertTriangle } from "lucide-react";
 import { evaluateAll } from "../engine/evaluate";
 import type { HealthRecord, Alert } from "../types/health";
-import type { LoggedAssessment } from "../components/wellbeing/AiSymptomAssistant";
+import type { LoggedAssessment } from "../types/health";
 
 interface HealthTimelinePageProps {
   missionTriageLogs?: LoggedAssessment[];
