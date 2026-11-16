@@ -1,4 +1,5 @@
 import { Activity, Moon, ShieldAlert } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -19,9 +20,10 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
 }
 
 export function LandingPage() {
+  const navigate = useNavigate();
+
   const handleLoginClick = () => {
-    console.log("Login clicked");
-    // TODO: Route to /login once backend is ready
+    navigate("/register");
   };
 
   return (
