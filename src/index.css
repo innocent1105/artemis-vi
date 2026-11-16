@@ -19,6 +19,22 @@
   --color-ARTEMIS-red: #ef4444;
   --color-ARTEMIS-redDark: #b91c1c;
   --color-ARTEMIS-slate: #64748b;
+
+  --color-astra-navy: #020617;
+  --color-astra-navyLight: #0f172a;
+  --color-astra-charcoal: #1e293b;
+  --color-astra-surface: #0f172a;
+  --color-astra-border: #334155;
+  --color-astra-cyan: #22d3ee;
+  --color-astra-cyanDark: #0891b2;
+  --color-astra-teal: #14b8a6;
+  --color-astra-green: #22c55e;
+  --color-astra-greenDark: #15803d;
+  --color-astra-amber: #f59e0b;
+  --color-astra-amberDark: #d97706;
+  --color-astra-red: #ef4444;
+  --color-astra-redDark: #b91c1c;
+  --color-astra-slate: #64748b;
 }
 
 html, body, #root {
